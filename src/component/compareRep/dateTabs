@@ -1,0 +1,90 @@
+import React, { useState } from "react";
+import "flatpickr/dist/flatpickr.min.css"; // Flatpickr CSS
+import Flatpickr from "react-flatpickr"; // Flatpickr Component
+
+export const DateTabs = () => {
+  const [fromDate, setFromDate] = useState(null); // State for From Date
+  const [toDate, setToDate] = useState(null); // State for To Date
+
+  return (
+    <div className="container mt-5">
+      {/* Tabs Navigation */}
+      <ul className="nav nav-tabs" id="dateTabs" role="tablist">
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link active"
+            id="from-date-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#from-date-tab-pane"
+            type="button"
+            role="tab"
+            aria-controls="from-date-tab-pane"
+            aria-selected="true"
+          >
+            From Date
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="to-date-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#to-date-tab-pane"
+            type="button"
+            role="tab"
+            aria-controls="to-date-tab-pane"
+            aria-selected="false"
+          >
+            To Date
+          </button>
+        </li>
+      </ul>
+
+      {/* Tabs Content */}
+      <div className="tab-content mt-3" id="dateTabsContent">
+        {/* From Date Tab */}
+        <div
+          className="tab-pane fade show active"
+          id="from-date-tab-pane"
+          role="tabpanel"
+          aria-labelledby="from-date-tab"
+        >
+          <div className="mb-3">
+            <label htmlFor="fromDate" className="form-label">
+              Select From Date:
+            </label>
+            <Flatpickr
+              id="fromDate"
+              className="form-control"
+              value={fromDate}
+              onChange={(date) => setFromDate(date)}
+              options={{ dateFormat: "Y-m-d" }}
+            />
+          </div>
+        </div>
+
+        {/* To Date Tab */}
+        <div
+          className="tab-pane fade"
+          id="to-date-tab-pane"
+          role="tabpanel"
+          aria-labelledby="to-date-tab"
+        >
+          <div className="mb-3">
+            <label htmlFor="toDate" className="form-label">
+              Select To Date:
+            </label>
+            <Flatpickr
+              id="toDate"
+              className="form-control"
+              value={toDate}
+              onChange={(date) => setToDate(date)}
+              options={{ dateFormat: "Y-m-d" }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
